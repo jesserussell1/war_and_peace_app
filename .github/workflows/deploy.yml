@@ -20,7 +20,7 @@ jobs:
 
       - name: Print Environment Variables
         run: env
-
+        
       - name: Set environment variable from secret
         run: echo "OPENAI_KEY=${{ secrets.OPENAI_KEY }}" >> $GITHUB_ENV
 
