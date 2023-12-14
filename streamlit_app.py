@@ -7,7 +7,7 @@ from llama_index import SimpleDirectoryReader
 st.set_page_config(page_title="Chat with War and Peace", page_icon="🦙", layout="centered",
                    initial_sidebar_state="auto", menu_items=None)
 
-openai.api_key = st.secrets.openai_key
+openai.api_key = os.environ.get('openai_key')
 
 st.title("Chat with the text of War and Peace, Maude translation 💬")
 
