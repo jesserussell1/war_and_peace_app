@@ -15,7 +15,7 @@ jobs:
 
 
       - name: Set environment variable from secret
-        run: echo "OPENAI_API_KEY=${{ secrets.OPENAI_KEY }}" >> $GITHUB_ENV
+        run: echo "OPENAI_KEY=${{ secrets.OPENAI_KEY }}" >> $GITHUB_ENV
 
 
       - name: Print API Key
