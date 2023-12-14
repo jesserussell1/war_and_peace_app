@@ -19,7 +19,7 @@ jobs:
 
 
       - name: Print API Key
-        run: echo "API Key:$OPENAI_API_KEY"
+        run: echo "API Key:$OPENAI_KEY"
 
 
       - name: Print Environment Variables Before Streamlit
