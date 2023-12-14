@@ -6,9 +6,15 @@ on:
       - main
 
 jobs:
-  set-key:
+  set_openai_key:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Set environment variable from secret
         run: echo "OPENAI_KEY=${{ secrets.OPENAI_KEY }}" >> $GITHUB_ENV
+
+      - name: Print Environment Variables Before Streamlit
+        run: env
