@@ -4,6 +4,9 @@ from llama_index.llms import OpenAI
 import openai
 import os
 
+
+print("OPENAI_KEY Value:", os.environ.get('OPENAI_KEY'))
+
 # Function to load data and create the VectorStoreIndex
 @st.cache_resource(show_spinner=False)
 def load_data():
