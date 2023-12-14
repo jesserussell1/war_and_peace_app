@@ -4,9 +4,6 @@ from llama_index.llms import OpenAI
 import openai
 import os
 
-
-print("OPENAI_KEY Value:", os.environ.get('OPENAI_KEY'))
-
 # Function to load data and create the VectorStoreIndex
 @st.cache_resource(show_spinner=False)
 def load_data():
@@ -24,7 +21,7 @@ def load_data():
 st.set_page_config(page_title="Chat with War and Peace", page_icon="🦙", layout="centered",
                    initial_sidebar_state="auto", menu_items=None)
 
-openai.api_key = os.environ.get('OPENAI_KEY')
+openai.api_key = st.secrets["openai_key"]
 
 st.title("Chat with the text of War and Peace, Maude translation 💬")
 
