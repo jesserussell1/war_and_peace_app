@@ -13,6 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Print Environment Variables
+        run: env
+
       - name: Set environment variable from secret
         run: echo "OPENAI_KEY=${{ secrets.OPENAI_KEY }}" >> $GITHUB_ENV
 
@@ -23,4 +26,4 @@ jobs:
 
       - name: Deploy Streamlit app
         run: |
-          streamlit run streamlit_app.py
+          streamlit run your_app.py
