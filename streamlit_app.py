@@ -21,7 +21,7 @@ def load_data():
 st.set_page_config(page_title="Chat with War and Peace", page_icon="🦙", layout="centered",
                    initial_sidebar_state="auto", menu_items=None)
 
-openai.api_key = os.environ.get('OPENAI_KEY')
+openai.api_key = os.environ.get('OPENAI_API_KEY')
 
 st.title("Chat with the text of War and Peace, Maude translation 💬")
 
