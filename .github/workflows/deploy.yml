@@ -1,0 +1,22 @@
+name: Your Deployment Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set environment variable from secret
+        run: echo "OPENAI_KEY=${{ secrets.OPENAI_KEY }}" >> $GITHUB_ENV
+
+      - name: Deploy Streamlit app
+        run: |
+          # Additional deployment steps here
+          streamlit run your_app.py
