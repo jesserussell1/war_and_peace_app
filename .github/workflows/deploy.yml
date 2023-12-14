@@ -13,8 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+
       - name: Set environment variable from secret
         run: echo "OPENAI_API_KEY=${{ secrets.OPENAI_KEY }}" >> $GITHUB_ENV
+
+
+      - name: Print API Key
+        run: echo "API Key:$OPENAI_API_KEY"
 
 
       - name: Print Environment Variables Before Streamlit
