@@ -23,4 +23,4 @@ jobs:
 
       - name: Deploy Streamlit app
         run: |
-          streamlit run your_app.py
+          streamlit run streamlit_app.py
