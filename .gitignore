@@ -1,0 +1,26 @@
+# .gitignore
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+
+# Environment variables file
+.env
+
+# IDE files
+.vscode/
+*.pyc
+
+# Streamlit cache folder
+.streamlit/
+
+# Local configuration files
+config/local_config.json
+
+# Secrets
+secrets.toml
