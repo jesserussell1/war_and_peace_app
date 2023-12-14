@@ -22,7 +22,7 @@ st.set_page_config(page_title="Chat with War and Peace", page_icon="🦙", layou
                    initial_sidebar_state="auto", menu_items=None)
 
 # Ensure the OpenAI API key is set
-openai.api_key = os.environ['OPENAI_KEY']
+openai.api_key = os.environ.get('OPENAI_KEY')
 
 st.title("Chat with the text of War and Peace, Maude translation 💬")
 
