@@ -1,9 +1,13 @@
 import streamlit as st
-from llama_index import VectorStoreIndex, ServiceContext, Document
-from llama_index.llms import OpenAI
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Document
+from llama_index.llms.openai import OpenAI
+from llama_index.core import Settings
 import openai
-from llama_index import SimpleDirectoryReader
-import os
+
+# Create a Settings object with the desired configuration
+Settings.llm = OpenAI(model="gpt-3.5-turbo", temperature=0.5,
+                      system_prompt="You are an expert on War and Peace and your job is to answer topical questions. Assume that all questions are related to War and Peace. Keep your answers topical and based on facts – do not hallucinate features.")
+
 
 st.set_page_config(page_title="Chat with War and Peace", page_icon="🦙", layout="centered",
                    initial_sidebar_state="auto", menu_items=None)
@@ -23,15 +27,14 @@ if "messages" not in st.session_state.keys():  # Initialize the chat messages hi
 @st.cache_resource(show_spinner=False)
 def load_data():
     with st.spinner(text="Loading and indexing the text of War and Peace – hang tight! This should take 1-2 minutes."):
+        # SimpleDirectoryReader will use the global settings
         reader = SimpleDirectoryReader(input_dir="./data", recursive=True)
         docs = reader.load_data()
-        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo", temperature=0.5,
-                                                                  system_prompt="You are an expert on War and Peace and your job is to answer topical questions. Assume that all questions are related to War and Peace. Keep your answers topical and based on facts – do not hallucinate features."))
-        index = VectorStoreIndex.from_documents(docs, service_context=service_context)
+        index = VectorStoreIndex.from_documents(docs)
         return index
 
-
 index = load_data()
+
 
 if "chat_engine" not in st.session_state.keys():  # Initialize the chat engine
     st.session_state.chat_engine = index.as_chat_engine(chat_mode="condense_question", verbose=True)
@@ -50,4 +53,6 @@ if st.session_state.messages[-1]["role"] != "assistant":
             response = st.session_state.chat_engine.chat(prompt)
             st.write(response.response)
             message = {"role": "assistant", "content": response.response}
-            st.session_state.messages.append(message)  # Add response to message history
+            st.session_state.messages.append(message)
+
+
