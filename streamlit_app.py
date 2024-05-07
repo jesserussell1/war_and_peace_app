@@ -1,8 +1,9 @@
 import streamlit as st
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Document
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.llms.openai import OpenAI
 from llama_index.core import Settings
 import openai
+
 
 # Create a Settings object with the desired configuration
 Settings.llm = OpenAI(model="gpt-3.5-turbo", temperature=0.5,
